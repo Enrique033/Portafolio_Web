@@ -8,7 +8,6 @@ import PortfolioShowcase from '@/components/home/PortfolioShowcase';
 import ServicesPricing from '@/components/home/ServicesPricing';
 import ProcessSteps from '@/components/home/ProcessSteps';
 import MaintenancePlans from '@/components/home/MaintenancePlans';
-import Testimonials from '@/components/home/Testimonials';
 import ContactForm from '@/components/home/ContactForm';
 import SiteFooter from '@/components/home/SiteFooter';
 import WhatsAppFloating from '@/components/shared/WhatsAppFloating';
@@ -76,7 +75,6 @@ export default function HomePage() {
         <ServicesPricing />
         <ProcessSteps />
         <MaintenancePlans />
-        <Testimonials />
         <Suspense fallback={<ContactForm accent={ACCENT_THEMES.indigo} />}>
           <ContactSection />
         </Suspense>

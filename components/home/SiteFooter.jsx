@@ -34,7 +34,7 @@ export default function SiteFooter() {
               </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Agencia de desarrollo web &amp; soluciones digitales. Diseñamos, construimos y hacemos crecer
+              Diseño y desarrollo de páginas web a tu medida. Creamos, publicamos y mantenemos
               sitios que convierten.
             </p>
             <div className="mt-4 flex gap-2">
@@ -119,9 +119,8 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-slate-200/70 pt-6 text-xs text-slate-500 sm:flex-row">
+        <div className="mt-12 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-500">
           <p>© {YEAR} {AGENCY_NAME}. Todos los derechos reservados.</p>
-          <p>Hecho con Next.js 14 · Tailwind CSS · Lucide Icons</p>
         </div>
       </div>
     </footer>

@@ -10,17 +10,18 @@ const inter = Inter({
 export const metadata = {
   metadataBase: new URL('https://nexus-studio.vercel.app'),
   title: {
-    default: 'NEXUS STUDIO — Agencia de Desarrollo Web & Soluciones Digitales',
+    default: 'NEXUS STUDIO — Diseño y Desarrollo Web & Soluciones Digitales',
     template: '%s | NEXUS STUDIO',
   },
   description:
-    'Agencia de desarrollo web en Lima: landing pages, sitios corporativos y tiendas e-commerce llave en mano. Portafolio de proyectos reales, cotizador inteligente y atención por WhatsApp.',
+    'Diseño y desarrollo de páginas web en Lima: landing pages, sitios corporativos y tiendas e-commerce llave en mano. Demos reales, cotizador inteligente y atención por WhatsApp.',
   keywords: [
     'desarrollo web',
     'diseño web',
     'e-commerce',
     'landing page',
-    'agencia digital',
+    'freelance',
+    'diseño de páginas web',
     'páginas web',
     'tienda online',
     'Lima',

@@ -3,10 +3,10 @@
  * paquetes, addons, planes de mantenimiento, comparativa, métricas y proyectos.
  */
 
-// ───────────────────────────── Agencia ─────────────────────────────
+// ───────────────────────── Marca y contacto ─────────────────────────
 
 export const AGENCY_NAME = 'NEXUS STUDIO';
-export const AGENCY_TAGLINE = 'Agencia de desarrollo web & soluciones digitales';
+export const AGENCY_TAGLINE = 'Diseño y desarrollo de páginas web';
 
 export const WHATSAPP_PHONE = process.env.WHATSAPP_PHONE || '51900000000';
 export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'hola@nexusstudio.dev';
@@ -24,10 +24,10 @@ export function getWhatsAppLink(message) {
 // ─────────────────────────── Hero / métricas ───────────────────────────
 
 export const heroMetrics = [
-  { icon: 'Rocket', value: '120+', label: 'Proyectos entregados' },
-  { icon: 'Star', value: '98%', label: 'Clientes satisfechos' },
-  { icon: 'Globe', value: '8+', label: 'Años de experiencia' },
-  { icon: 'LifeBuoy', value: '24/7', label: 'Soporte y mantenimiento' },
+  { icon: 'Rocket', value: '100%', label: 'Diseño a tu medida' },
+  { icon: 'MessageCircle', value: '<24h', label: 'Respuesta por WhatsApp' },
+  { icon: 'LifeBuoy', value: '30 días', label: 'Soporte post-entrega' },
+  { icon: 'Globe', value: '24/7', label: 'Tu web siempre en línea' },
 ];
 
 // ───────────────────────── Paquetes de diseño web ─────────────────────────
@@ -36,8 +36,8 @@ export const packages = [
   {
     id: 'landing',
     name: 'Landing Page',
-    price: 1490,
-    oldPrice: 1890,
+    price: 499,
+    oldPrice: 1490,
     tag: 'Ideal para despegar',
     delivery: '7 días',
     description:
@@ -56,8 +56,8 @@ export const packages = [
   {
     id: 'corporativa',
     name: 'Web Corporativa',
-    price: 2890,
-    oldPrice: 3490,
+    price: 699,
+    oldPrice: 2890,
     tag: 'El más elegido',
     delivery: '15 días',
     description:
@@ -77,8 +77,8 @@ export const packages = [
   {
     id: 'ecommerce',
     name: 'Tienda E-commerce',
-    price: 4990,
-    oldPrice: 5990,
+    price: 999,
+    oldPrice: 4990,
     tag: 'Vende 24/7',
     delivery: '30 días',
     description:
@@ -99,14 +99,14 @@ export const packages = [
 // ─────────────────────────────── Addons ───────────────────────────────
 
 export const addons = [
-  { id: 'copywriting', name: 'Copywriting profesional', price: 120, desc: 'Textos que convierten visitantes en clientes.' },
-  { id: 'seo', name: 'Pack SEO inicial', price: 180, desc: 'Palabras clave, sitemap y optimización on-page.' },
-  { id: 'blog', name: 'Blog integrado', price: 250, desc: 'Publica artículos y atrae tráfico orgánico.' },
-  { id: 'whatsapp-api', name: 'WhatsApp Business API', price: 90, desc: 'Botones de cotización y compra directa.' },
-  { id: 'crm', name: 'CRM / formularios avanzados', price: 150, desc: 'Captura y organiza leads automáticamente.' },
-  { id: 'fotografia', name: 'Sesión fotográfica de producto', price: 320, desc: 'Fotos profesionales para tu catálogo.' },
-  { id: 'pagos', name: 'Pasarela de pagos', price: 200, desc: 'Cobros con tarjeta, Yape y transferencias.' },
-  { id: 'mant-3m', name: 'Mantenimiento mensual (×3 meses)', price: 99, desc: 'Actualizaciones, backups y reportes.' },
+  { id: 'copywriting', name: 'Copywriting profesional', price: 35, desc: 'Textos que convierten visitantes en clientes.' },
+  { id: 'seo', name: 'Pack SEO inicial', price: 55, desc: 'Palabras clave, sitemap y optimización on-page.' },
+  { id: 'blog', name: 'Blog integrado', price: 75, desc: 'Publica artículos y atrae tráfico orgánico.' },
+  { id: 'whatsapp-api', name: 'WhatsApp Business API', price: 25, desc: 'Botones de cotización y compra directa.' },
+  { id: 'crm', name: 'CRM / formularios avanzados', price: 45, desc: 'Captura y organiza leads automáticamente.' },
+  { id: 'fotografia', name: 'Sesión fotográfica de producto', price: 95, desc: 'Fotos profesionales para tu catálogo.' },
+  { id: 'pagos', name: 'Pasarela de pagos', price: 60, desc: 'Cobros con tarjeta, Yape y transferencias.' },
+  { id: 'mant-3m', name: 'Mantenimiento mensual (×3 meses)', price: 30, desc: 'Actualizaciones, backups y reportes.' },
 ];
 
 // ─────────────────────── Planes de mantenimiento ───────────────────────
@@ -166,8 +166,6 @@ export const portfolioProjects = [
     status: 'pronto',
     accent: 'informativa',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop',
-    price: 4990,
-    oldPrice: 5990,
     bullets: ['Slider hero con autoplay', 'Servicios con alcance y entregables', 'Google Maps (vista Mapa / Satélite)'],
   },
   {
@@ -182,8 +180,6 @@ export const portfolioProjects = [
     status: 'pronto',
     accent: 'catalogo',
     image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop',
-    price: 5990,
-    oldPrice: 6990,
     bullets: ['Filtros por categoría y precio', 'Cotización masiva por WhatsApp', 'Vista rápida con variantes y colores'],
   },
   {
@@ -198,8 +194,6 @@ export const portfolioProjects = [
     status: 'online',
     accent: 'tienda',
     image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1200&auto=format&fit=crop',
-    price: 6990,
-    oldPrice: 7990,
     bullets: ['Carrito persistente y checkout completo', 'Cupones de descuento reales', 'Pedidos que llegan a WhatsApp'],
   },
 ];
@@ -233,7 +227,7 @@ export const processSteps = [
   },
 ];
 
-// ───────────────────────── Testimonios de agencia ─────────────────────────
+// ───────────── Testimonios (sección desactivada por ahora) ─────────────
 
 export const agencyTestimonials = [
   {

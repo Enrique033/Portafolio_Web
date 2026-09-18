@@ -2,7 +2,7 @@
   "name": "nexus-studio-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Agencia de desarrollo web en Lima: landing pages, sitios corporativos y tiendas e-commerce. Portafolio de proyectos reales, cotizador inteligente y atenci\u00f3n por WhatsApp.",
+  "description": "Desarrollo de p\u00e1ginas web en Lima: landing pages, sitios corporativos y tiendas e-commerce. Demos reales, cotizador inteligente y atenci\u00f3n por WhatsApp.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

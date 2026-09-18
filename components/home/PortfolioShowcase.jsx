@@ -157,17 +157,6 @@ export default function PortfolioShowcase() {
                       ))}
                     </ul>
 
-                    <div className="mt-4 flex items-baseline gap-2">
-                      <span className="text-2xl font-extrabold text-slate-900">
-                        S/ {d.price?.toLocaleString('es-PE')}
-                      </span>
-                      {d.oldPrice && (
-                        <span className="text-sm text-slate-400 line-through">
-                          S/ {d.oldPrice.toLocaleString('es-PE')}
-                        </span>
-                      )}
-                    </div>
-
                     <span
                       className={`mt-5 inline-flex items-center gap-1.5 text-sm font-bold ${
                         isLive ? 'text-emerald-600' : isComingSoon ? 'text-amber-600' : accent.text

@@ -76,7 +76,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 sm:pt-28 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="animate-fade-up inline-flex items-center gap-1.5 rounded-full border border-indigo-600/20 bg-white px-3.5 py-1.5 text-xs font-bold text-indigo-700 shadow-soft">
-            <Sparkles className="h-3.5 w-3.5 text-indigo-600" /> Agencia de desarrollo web · Lima
+            <Sparkles className="h-3.5 w-3.5 text-indigo-600" /> Diseño y desarrollo web · Lima
           </span>
 
           <h1
