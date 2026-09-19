@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, Check, Sparkles, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import { portfolioProjects } from '@/data/portfolioData';
 import { ACCENT_THEMES } from '@/data/themeConfig';
 import Reveal from '@/components/shared/Reveal';
@@ -10,14 +10,14 @@ import Reveal from '@/components/shared/Reveal';
 /**
  * Showcase de proyectos de NEXUS STUDIO.
  * - Filtros 100% personalizados (píldoras interactivas, sin <select> nativos).
- * - status 'online' → abre la demo real en nueva pestaña.
- * - status 'pronto' → toast de "Próximamente".
+ * - Solo se listan las 3 demos reales (status 'online' → se abren en nueva pestaña).
+ * - Cada filtro corresponde 1:1 a un tipo de web: informativa, catálogo y tienda online.
  */
 const FILTERS = [
-  { id: 'todos', label: 'Todos' },
-  { id: 'web', label: 'Webs corporativas' },
-  { id: 'catalogo', label: 'Catálogos' },
-  { id: 'ecommerce', label: 'E-commerce' },
+  { id: 'todos', label: 'Todas (3)' },
+  { id: 'informativa', label: 'Web informativa' },
+  { id: 'catalogo', label: 'Catálogo digital' },
+  { id: 'tienda', label: 'Tienda online' },
 ];
 
 /** Devuelve solo el host (sin www.) de una URL absoluta; si no es válida, un texto genérico. */
@@ -31,20 +31,12 @@ function getHost(href) {
 
 export default function PortfolioShowcase() {
   const [filter, setFilter] = useState('todos');
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastMsg, setToastMsg] = useState('');
 
+  // Solo demos reales y publicadas: cada categoría equivale a un tipo de web.
   const visible = useMemo(
     () => (filter === 'todos' ? portfolioProjects : portfolioProjects.filter((d) => d.category === filter)),
     [filter]
   );
-
-  const handleComingSoon = (e, name) => {
-    e.preventDefault();
-    setToastMsg(`${name} aún está en construcción. ¡Vuelve pronto!`);
-    setToastOpen(true);
-    setTimeout(() => setToastOpen(false), 4000);
-  };
 
   return (
     <section id="portafolio" className="relative scroll-mt-24 overflow-hidden py-20">
@@ -64,7 +56,11 @@ export default function PortfolioShowcase() {
             , demos navegables
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Explora las demos en vivo de las webs que construimos y cotiza tu sitio en menos de 1 minuto.
+            Tres demos reales, publicadas y navegables:{' '}
+            <strong className="font-semibold text-slate-900">web informativa</strong>,{' '}
+            <strong className="font-semibold text-slate-900">catálogo digital</strong> y{' '}
+            <strong className="font-semibold text-slate-900">tienda online</strong>. Ábrelas y cotiza
+            la tuya en menos de 1 minuto.
           </p>
         </div>
 
@@ -101,38 +97,23 @@ export default function PortfolioShowcase() {
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {visible.map((d, i) => {
             const accent = ACCENT_THEMES[d.accent];
-            const isLive = d.status === 'online';
-            const isComingSoon = d.status === 'pronto';
             return (
               <Reveal key={d.slug} delay={i * 90} className="h-full">
                 <a
                   href={d.href}
-                  target={isLive ? '_blank' : undefined}
-                  rel={isLive ? 'noopener noreferrer' : undefined}
-                  onClick={(e) => {
-                    if (isComingSoon) handleComingSoon(e, d.name);
-                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Abrir la demo de ${d.name} (${d.type}) en una pestaña nueva`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
                 >
-                  {/* Badge de estado */}
-                  {isLive && (
-                    <span className="absolute right-4 top-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-emerald-500/30">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-                      </span>
-                      En vivo
+                  {/* Badge: todas las demos del portafolio están publicadas */}
+                  <span className="absolute right-4 top-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-emerald-500/30">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
                     </span>
-                  )}
-                  {isComingSoon && (
-                    <span className="absolute right-4 top-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-slate-900/80 px-2.5 py-1 text-[10px] font-bold text-amber-300 backdrop-blur">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
-                      </span>
-                      Próximamente
-                    </span>
-                  )}
+                    En vivo
+                  </span>
 
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
@@ -146,15 +127,19 @@ export default function PortfolioShowcase() {
                     <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-slate-800 shadow-sm backdrop-blur">
                       {d.brand}
                     </span>
-                    {isLive && (
-                      <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow">
-                        <ArrowUpRight className="h-3 w-3 text-emerald-600" /> {getHost(d.href)}
-                      </span>
-                    )}
+                    <span className="absolute bottom-3 left-4 inline-flex items-center rounded-full bg-slate-900/75 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
+                      {d.type}
+                    </span>
+                    <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow">
+                      <ArrowUpRight className="h-3 w-3 text-emerald-600" /> {getHost(d.href)}
+                    </span>
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-lg font-extrabold text-slate-900">{d.name}</h3>
+                    <span className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}>
+                      {d.type}
+                    </span>
+                    <h3 className="mt-1 text-lg font-extrabold text-slate-900">{d.name}</h3>
                     <p className="mt-0.5 text-xs font-medium text-slate-500">{d.tagline}</p>
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{d.description}</p>
 
@@ -166,15 +151,9 @@ export default function PortfolioShowcase() {
                       ))}
                     </ul>
 
-                    <span
-                      className={`mt-5 inline-flex items-center gap-1.5 text-sm font-bold ${
-                        isLive ? 'text-emerald-600' : isComingSoon ? 'text-amber-600' : accent.text
-                      }`}
-                    >
-                      {isLive ? 'Explorar demo en vivo' : isComingSoon ? 'Próximamente' : 'Explorar proyecto'}
-                      {!isComingSoon && (
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      )}
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-600">
+                      Explorar demo en vivo
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
 
@@ -187,27 +166,12 @@ export default function PortfolioShowcase() {
             );
           })}
         </div>
-      </div>
 
-      {/* Toast: aviso de "Próximamente" */}
-      <div
-        className={`fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-2xl border border-amber-500/30 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-lift transition-all duration-300 ${
-          toastOpen ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
-        }`}
-        role="status"
-      >
-        <div className="flex items-center gap-2.5">
-          <Sparkles className="h-4 w-4 text-amber-500" />
-          <span>{toastMsg}</span>
-          <button
-            type="button"
-            onClick={() => setToastOpen(false)}
-            className="rounded-lg p-1 text-slate-400 hover:text-slate-700"
-            aria-label="Cerrar notificación"
-          >
-            <X className="h-3 w-3" />
-          </button>
-        </div>
+        {/* Nota: el portafolio son 3 demos reales, sin proyectos ficticios */}
+        <p className="mt-8 text-center text-xs text-slate-500">
+          Estas 3 webs son proyectos reales publicados y en producción: una web informativa, un
+          catálogo digital y una tienda online.
+        </p>
       </div>
     </section>
   );

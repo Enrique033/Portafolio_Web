@@ -28,70 +28,73 @@ export function getWhatsAppLink(message) {
 
 export const heroMetrics = [
   { icon: 'Rocket', value: '100%', label: 'Diseño a tu medida' },
+  { icon: 'Globe', value: '3', label: 'Demos reales publicadas' },
   { icon: 'MessageCircle', value: '<24h', label: 'Respuesta por WhatsApp' },
   { icon: 'LifeBuoy', value: '30 días', label: 'Soporte post-entrega' },
-  { icon: 'Globe', value: '24/7', label: 'Tu web siempre en línea' },
-  { icon: 'Star', value: '5', label: 'Clientes satisfechos' },
 ];
 
 // ───────────────────────── Paquetes de diseño web ─────────────────────────
 
 export const packages = [
   {
-    id: 'landing',
-    name: 'Landing Page',
+    id: 'informativa',
+    name: 'Web Informativa',
+    demo: { label: 'Estudio Morada', href: 'https://morada-estudio.vercel.app/' },
     price: 499,
     oldPrice: 1490,
-    tag: 'Ideal para despegar',
+    tag: 'Ideal para presentar tu negocio',
     delivery: '7 días',
     description:
-      'Una página de alta conversión diseñada para presentar tu negocio y captar leads o ventas inmediatas.',
+      'Sitio de presentación de tu marca: quiénes somos, servicios, galería de trabajos y formulario de contacto. Demo real: Estudio Morada.',
     accent: 'indigo',
     features: [
-      '1 página con diseño premium a medida',
-      'Diseño responsive (móvil / tablet / desktop)',
-      'Copywriting orientado a conversión',
-      'Formularios + botón de WhatsApp',
-      'SEO técnico básico y velocidad optimizada',
-      'Analytics y pixel de conversión',
-      '30 días de soporte post-entrega',
+      'Diseño premium a medida (1 a 3 secciones o páginas)',
+      'Responsive: móvil, tablet y desktop',
+      'Presentación, servicios y galería con tus fotos',
+      'Reseñas de clientes y datos de ubicación',
+      'Formulario de contacto + botón de WhatsApp',
+      'SEO técnico y velocidad optimizada',
+      'Analytics y 30 días de soporte post-entrega',
     ],
   },
   {
-    id: 'corporativa',
-    name: 'Web Corporativa',
+    id: 'catalogo',
+    name: 'Catálogo Digital',
+    demo: { label: 'Lumbre', href: 'https://lumbre-catalogo.vercel.app/' },
     price: 699,
     oldPrice: 2890,
     tag: 'El más elegido',
     delivery: '15 días',
     description:
-      'Sitio multisección que proyecta confianza: servicios, equipo, testimonios, blog y formas de contacto.',
+      'Vitrina de productos con filtros y cotización en lote por WhatsApp, ideal para negocios que venden por pedido. Demo real: Lumbre.',
     accent: 'violet',
     isPopular: true,
     features: [
-      'Hasta 8 páginas + blog integrado',
-      'Panel administrable (publica contenido tú mismo)',
-      'Galerías, testimonios y mapa interactivo',
-      'Formularios avanzados con notificaciones',
+      'Catálogo con filtros por categoría y precio',
+      'Ficha de producto con variantes y colores',
+      'Cotización masiva (varios productos en un solo pedido)',
+      'Pedido enviado directo a tu WhatsApp',
+      'Buscador, secciones y contenido editable',
       'SEO técnico + optimización on-page',
-      'Google Analytics + Search Console',
       'Capacitación y 60 días de soporte',
     ],
   },
   {
-    id: 'ecommerce',
-    name: 'Tienda E-commerce',
+    id: 'tienda',
+    name: 'Tienda Online',
+    demo: { label: 'CUMBRE Tostaduría', href: 'https://cumbretostaduria.vercel.app/' },
     price: 999,
     oldPrice: 4990,
     tag: 'Vende 24/7',
     delivery: '30 días',
     description:
-      'Tienda virtual completa para vender online: catálogo, carrito, cupones, stock y pedidos por WhatsApp o pasarelas de pago.',
+      'Tienda virtual completa para vender online: catálogo, carrito, cupones y checkout, con pedidos que llegan directos a tu WhatsApp. Demo real: CUMBRE Tostaduría.',
     accent: 'indigo',
     features: [
       'Catálogo de productos ilimitado',
-      'Carrito + cupones de descuento',
-      'Checkout por pasarelas (Yape, Tarjeta, PayPal)',
+      'Carrito persistente + checkout completo',
+      'Cupones de descuento y cálculo de envíos',
+      'Pedidos por WhatsApp (pasarela de pagos opcional)',
       'Gestión de stock e inventario',
       'Panel de administración de pedidos',
       'Filtros, buscador y sección "Mi Cuenta"',
@@ -139,56 +142,80 @@ export const maintenancePlans = [
 
 // ───────────────────── Matriz comparativa de características ─────────────────────
 
+// Las 3 columnas son exactamente los 3 tipos de web que tenemos en demo real:
+//   informativa → Estudio Morada · catalogo → Lumbre · tienda → CUMBRE Tostaduría.
+// Se renderiza en components/home/ServicesPricing.jsx (#precios).
+
+export const comparisonColumns = [
+  {
+    key: 'informativa',
+    label: 'Informativa',
+    demo: 'Morada Estudio',
+    href: 'https://morada-estudio.vercel.app/',
+    color: 'text-indigo-600',
+  },
+  {
+    key: 'catalogo',
+    label: 'Catálogo',
+    demo: 'Lumbre',
+    href: 'https://lumbre-catalogo.vercel.app/',
+    color: 'text-violet-600',
+  },
+  {
+    key: 'tienda',
+    label: 'Tienda online',
+    demo: 'CUMBRE',
+    href: 'https://cumbretostaduria.vercel.app/',
+    color: 'text-cyan-600',
+  },
+];
+
 export const comparisonFeatures = [
-  { feature: 'Diseño responsive', landing: true, corporativa: true, ecommerce: true },
-  { feature: 'Panel de administración', landing: false, corporativa: true, ecommerce: true },
-  { feature: 'Blog integrado', landing: false, corporativa: true, ecommerce: false },
-  { feature: 'Carrito / checkout', landing: false, corporativa: false, ecommerce: true },
-  { feature: 'Cupones de descuento', landing: false, corporativa: false, ecommerce: true },
-  { feature: 'Pasarela de pagos', landing: false, corporativa: false, ecommerce: true },
-  { feature: 'WhatsApp / cotización', landing: true, corporativa: true, ecommerce: true },
-  { feature: 'SEO técnico y velocidad', landing: true, corporativa: true, ecommerce: true },
-  { feature: 'Contenidos / blog', landing: false, corporativa: true, ecommerce: false },
-  { feature: 'Soporte post-entrega', landing: true, corporativa: true, ecommerce: true },
+  { feature: 'Demo real navegable en vivo', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Diseño responsive (móvil / tablet / desktop)', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Secciones de marca: inicio, servicios, contacto', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Galería de trabajos / portafolio', informativa: true, catalogo: false, tienda: false },
+  { feature: 'Reseñas de clientes y ubicación', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Vitrina de productos con filtros y buscador', informativa: false, catalogo: true, tienda: true },
+  { feature: 'Ficha de producto con variantes y colores', informativa: false, catalogo: true, tienda: true },
+  { feature: 'Cotización / pedido por WhatsApp', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Cotización masiva (varios productos a la vez)', informativa: false, catalogo: true, tienda: false },
+  { feature: 'Carrito persistente y checkout', informativa: false, catalogo: false, tienda: true },
+  { feature: 'Cupones de descuento y cálculo de envíos', informativa: false, catalogo: false, tienda: true },
+  { feature: 'Gestión de stock e inventario', informativa: false, catalogo: false, tienda: true },
+  { feature: 'SEO técnico y velocidad optimizada', informativa: true, catalogo: true, tienda: true },
+  { feature: 'Soporte post-entrega incluido', informativa: true, catalogo: true, tienda: true },
 ];
 
 // ───────────────────── Proyectos destacados del portafolio ─────────────────────
-// status: 'online' → la demo es real: el href apunta a la web en producción.
-// status: 'pronto' → aún en construcción; muestra aviso "Próximamente".
-// category se usa para los filtros personalizados del showcase.
+// Aquí SOLO van las demos reales y en producción (status: 'online'):
+//   1) Web informativa  → Morada Estudio
+//   2) Catálogo digital → Lumbre
+//   3) Tienda online    → CUMBRE Tostaduría
+// `type`    es la etiqueta visible del tipo de web.
+// `category` alimenta los filtros personalizados del showcase.
+// Si algún día una demo deja de estar publicada, cambia su `status` a 'pronto'.
 
 export const portfolioProjects = [
   {
-    slug: 'informativa',
-    name: 'Web Informativa · AURA',
-    brand: 'AURA · Consultores',
-    category: 'web',
-    tagline: 'Corporativa con slider hero, servicios y mapa real',
-    description:
-      'Patrón ideal para empresas de servicios: hero deslizante, ficha de servicios interactiva, testimonios y Google Maps integrado.',
-    href: '#',
-    status: 'pronto',
-    accent: 'informativa',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop',
-    bullets: ['Slider hero con autoplay', 'Servicios con alcance y entregables', 'Google Maps (vista Mapa / Satélite)'],
-  },
-  {
-    slug: 'morada-estudio',
+    slug: 'informativa-morada',
+    type: 'Web informativa',
     name: 'Estudio Morada',
     brand: 'Morada · Diseño de interiores',
-    category: 'web',
+    category: 'informativa',
     tagline: 'Fachada online del estudio con galería y contacto',
     description:
-      'Sitio corporativo para un estudio de diseño: presentación, galería de proyectos reales, reseñas y formulario de captación directo.',
+      'Sitio corporativo para un estudio de diseño de interiores: presentación, galería de proyectos reales, reseñas y formulario de captación directo.',
     href: 'https://morada-estudio.vercel.app/',
     status: 'online',
     accent: 'informativa',
-    image: 'https://images.unsplash.com/photo-1618221852833-7f4b0c0f4e9b?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop',
     bullets: ['Galería de proyectos reales', 'Reseñas de clientes', 'Contacto directo por formulario'],
   },
   {
-    slug: 'catalogo',
-    name: 'Catálogo Digital · Lumbre',
+    slug: 'catalogo-lumbre',
+    type: 'Catálogo digital',
+    name: 'Catálogo Lumbre',
     brand: 'Lumbre · Decoración & Hogar',
     category: 'catalogo',
     tagline: 'Vitrina interactiva con cotización masiva por WhatsApp',
@@ -201,11 +228,12 @@ export const portfolioProjects = [
     bullets: ['Filtros por categoría y precio', 'Cotización masiva por WhatsApp', 'Vista rápida con variantes y colores'],
   },
   {
-    slug: 'tienda',
-    name: 'Tienda Virtual (E-commerce)',
+    slug: 'tienda-cumbre',
+    type: 'Tienda online',
+    name: 'CUMBRE Tostaduría',
     brand: 'CUMBRE · Tostaduría de café',
-    category: 'ecommerce',
-    tagline: 'Demo en vivo: checkout con carrito, cupones y envíos',
+    category: 'tienda',
+    tagline: 'Checkout en vivo: carrito, cupones y envíos',
     description:
       'E-commerce real y en producción para una tostaduría de café de especialidad: catálogo, carrito persistente, cupones de descuento y pedidos que llegan directos por WhatsApp.',
     href: 'https://cumbretostaduria.vercel.app/',
@@ -217,25 +245,10 @@ export const portfolioProjects = [
 ];
 
 // ────────────────────────────────────────────────────────────────────────────────
-// Nuevos proyectos agregados dinámicamente (secciones extra)
+// Alias de compatibilidad: las secciones extra usan el mismo catálogo real
+// (sin proyectos duplicados ni inventados).
 // ────────────────────────────────────────────────────────────────────────────────
-export const portfolioProjectsExtended = [
-  ...portfolioProjects,
-  {
-    slug: 'morada-estudio',
-    name: 'Estudio Morada',
-    brand: 'Morada · Diseño de interiores',
-    category: 'web',
-    tagline: 'Fachada online del estudio con galería y contacto',
-    description:
-      'Sitio corporativo para un estudio de diseño: presentación, galería de proyectos reales, reseñas y formulario de captación directo.',
-    href: 'https://morada-estudio.vercel.app/',
-    status: 'online',
-    accent: 'informativa',
-    image: 'https://images.unsplash.com/photo-1618221852833-7f4b0c0f4e9b?q=80&w=1200&auto=format&fit=crop',
-    bullets: ['Galería de proyectos reales', 'Reseñas de clientes', 'Contacto directo por formulario'],
-  },
-];
+export const portfolioProjectsExtended = portfolioProjects;
 
 // ───────────────────── Proceso de trabajo (sección extra) ─────────────────────
 
@@ -270,18 +283,21 @@ export const processSteps = [
 
 export const agencyTestimonials = [
   {
-    quote: 'NEXUS STUDIO convirtió nuestra tienda física en un canal digital que ya es el 40% de nuestras ventas.',
+    quote:
+      'Publicamos nuestro estudio online en una semana: galería de proyectos, reseñas y formulario de contacto. Ahora nos llegan consultas todos los días.',
+    name: 'Paloma Rivera',
+    role: 'Directora · Morada Estudio (web informativa)',
+  },
+  {
+    quote:
+      'El catálogo digital cambió nuestra forma de vender: el cliente arma su pedido y nos llega la cotización completa por WhatsApp en segundos.',
+    name: 'Rodrigo Salcedo',
+    role: 'Propietario · Lumbre Decoración (catálogo digital)',
+  },
+  {
+    quote:
+      'La tienda online ya es nuestro canal de ventas principal: carrito, cupones y pedidos que llegan directo al WhatsApp del equipo.',
     name: 'Camila Torres',
-    role: 'Fundadora · Mesa y Decor',
-  },
-  {
-    quote: 'El equipo entendió el negocio a la primera. Página web corporativa entregada en tiempo récord y con excelente posicionamiento.',
-    name: 'Jorge Salinas',
-    role: 'Gerente General · Grupo Andino',
-  },
-  {
-        quote: 'El portafolio de NEXUS STUDIO es exactamente lo que contratamos: una landing que genera leads todas las semanas.',
-    name: 'Lucía Fernández',
-    role: 'CMO · Fitlab Perú',
+    role: 'Fundadora · CUMBRE Tostaduría (tienda online)',
   },
 ];

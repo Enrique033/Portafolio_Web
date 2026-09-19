@@ -95,9 +95,11 @@ export default function Hero() {
             style={{ animationDelay: '160ms' }}
           >
             Diseño premium, desarrollo de alto rendimiento y estrategia de conversión en cada pixel.
-            Explora nuestro{' '}
-            <span className="font-semibold text-slate-900">portafolio de proyectos reales</span> y
-            cotiza tu proyecto en menos de 1 minuto.
+            Nuestras 3 demos reales:{' '}
+            <span className="font-semibold text-slate-900">web informativa</span>,{' '}
+            <span className="font-semibold text-slate-900">catálogo digital</span> y{' '}
+            <span className="font-semibold text-slate-900">tienda online</span>. Ábrelas y cotiza
+            tu proyecto en menos de 1 minuto.
           </p>
 
           <div

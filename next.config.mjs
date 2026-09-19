@@ -30,6 +30,11 @@ const serverRoutes = {
         destination: 'https://lumbre-catalogo.vercel.app/',
         permanent: true,
       },
+      {
+        source: '/cumbre-tostaduria',
+        destination: 'https://cumbretostaduria.vercel.app/',
+        permanent: true,
+      },
     ];
   },
   async headers() {

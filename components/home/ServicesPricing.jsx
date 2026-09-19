@@ -1,7 +1,7 @@
 'use client';
 
-import { Check, X, Zap } from 'lucide-react';
-import { comparisonFeatures, packages } from '@/data/portfolioData';
+import { ArrowUpRight, Check, X, Zap } from 'lucide-react';
+import { comparisonColumns, comparisonFeatures, packages } from '@/data/portfolioData';
 import { ACCENT_THEMES } from '@/data/themeConfig';
 import Reveal from '@/components/shared/Reveal';
 
@@ -17,8 +17,8 @@ export default function ServicesPricing() {
             Paquetes de diseño web
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Precios fijos en soles, sin letra pequeña. Incluyen diseño premium, desarrollo,
-            capacitación y soporte post-entrega.
+            Tres paquetes, tres demos reales publicadas. Precios fijos en soles, sin letra
+            pequeña: incluyen diseño premium, desarrollo, capacitación y soporte post-entrega.
           </p>
         </div>
 
@@ -66,36 +66,60 @@ export default function ServicesPricing() {
                     ))}
                   </ul>
 
-                  <a
-                    href={`?paquete=${p.id}#contacto`}
-                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-all hover:scale-[1.02] ${accent.button} ${accent.glow}`}
-                  >
-                    Cotizar {p.name} <Zap className="h-4 w-4" />
-                  </a>
+                  <div className="mt-6 grid gap-2">
+                    <a
+                      href={`?paquete=${p.id}#contacto`}
+                      className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-all hover:scale-[1.02] ${accent.button} ${accent.glow}`}
+                    >
+                      Cotizar {p.name} <Zap className="h-4 w-4" />
+                    </a>
+                    {p.demo && (
+                      <a
+                        href={p.demo.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-600 transition-colors hover:border-emerald-500 hover:text-emerald-700"
+                      >
+                        Ver demo real: {p.demo.label} <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </Reveal>
             );
           })}
         </div>
 
-        {/* Matriz comparativa (#precios) */}
+        {/* Matriz comparativa (#precios) — las 3 columnas son las 3 demos reales */}
         <div id="precios" className="mt-16 scroll-mt-24 overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-soft">
           <table className="w-full min-w-[640px] text-sm">
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50 text-left">
                 <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Característica</th>
-                <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider text-indigo-600">Landing</th>
-                <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider text-violet-600">Corporativa</th>
-                <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider text-cyan-600">E-commerce</th>
+                {comparisonColumns.map((c) => (
+                  <th key={c.key} className="px-4 py-4 text-center align-top">
+                    <span className={`block text-xs font-bold uppercase tracking-wider ${c.color}`}>
+                      {c.label}
+                    </span>
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 underline-offset-2 transition-colors hover:text-emerald-700 hover:underline"
+                    >
+                      Demo: {c.demo} <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {comparisonFeatures.map((row) => (
                 <tr key={row.feature} className="border-b border-slate-100 transition-colors last:border-0 hover:bg-slate-50/70">
                   <td className="px-6 py-3.5 font-medium text-slate-700">{row.feature}</td>
-                  {['landing', 'corporativa', 'ecommerce'].map((k) => (
-                    <td key={k} className="px-4 py-3.5 text-center">
-                      {row[k] ? (
+                  {comparisonColumns.map((c) => (
+                    <td key={c.key} className="px-4 py-3.5 text-center">
+                      {row[c.key] ? (
                         <Check className="mx-auto h-[18px] w-[18px] text-emerald-500" />
                       ) : (
                         <X className="mx-auto h-4 w-4 text-slate-300" />
@@ -106,6 +130,26 @@ export default function ServicesPricing() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Cada columna corresponde a una web real en producción */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
+          <span className="font-semibold text-slate-600">Demos reales:</span>
+          {comparisonColumns.map((c) => (
+            <a
+              key={c.key}
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 font-semibold text-slate-600 transition-all hover:-translate-y-0.5 hover:border-emerald-500 hover:text-emerald-700"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              {c.label} · {c.demo}
+            </a>
+          ))}
         </div>
 
       </div>

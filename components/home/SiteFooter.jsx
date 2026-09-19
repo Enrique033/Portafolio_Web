@@ -13,12 +13,11 @@ const links = [
   { label: 'Cotización inmediata', href: '#contacto' },
 ];
 
+// Solo proyectos reales: los 3 tipos de web con demo publicada en producción.
 const projectLinks = [
-  { label: 'Web Informativa', href: '#', soon: true },
-  { label: 'Catálogo Digital', href: '#', soon: true },
-  { label: 'Tienda Virtual · CUMBRE Café', href: 'https://cumbretostaduria.vercel.app/', soon: false },
-  { label: 'Estudio Morada', href: 'https://morada-estudio.vercel.app/', soon: false },
-  { label: 'Catálogo Lumbre', href: 'https://lumbre-catalogo.vercel.app/', soon: false },
+  { label: 'Web informativa · Morada Estudio', href: 'https://morada-estudio.vercel.app/' },
+  { label: 'Catálogo digital · Lumbre', href: 'https://lumbre-catalogo.vercel.app/' },
+  { label: 'Tienda online · CUMBRE Tostaduría', href: 'https://cumbretostaduria.vercel.app/' },
 ];
 
 export default function SiteFooter() {
@@ -65,28 +64,19 @@ export default function SiteFooter() {
             <ul className="mt-4 space-y-2.5 text-sm">
               {projectLinks.map((l) => (
                 <li key={l.label}>
-                  {l.soon ? (
-                    <a href="#portafolio" className="group inline-flex items-center text-slate-600 transition-colors hover:text-indigo-700">
-                      <span className="mr-1.5 inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-500">
-                        Próximamente
-                      </span>
-                      {l.label}
-                    </a>
-                  ) : (
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 font-medium text-slate-700 transition-colors hover:text-indigo-700"
-                    >
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                      </span>
-                      {l.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 text-emerald-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </a>
-                  )}
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 font-medium text-slate-700 transition-colors hover:text-indigo-700"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    </span>
+                    {l.label}
+                    <ArrowUpRight className="h-3.5 w-3.5 text-emerald-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
                 </li>
               ))}
             </ul>

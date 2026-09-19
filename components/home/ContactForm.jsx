@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { AlertTriangle, Check, CheckCircle2, Mail, MessageCircle, Send } from 'lucide-react';
+import { AlertTriangle, Check, CheckCircle2, ExternalLink, Mail, MessageCircle, Send } from 'lucide-react';
 import { addons, packages, CONTACT_EMAIL, getWhatsAppLink } from '@/data/portfolioData';
 
 /**
@@ -11,15 +11,19 @@ import { addons, packages, CONTACT_EMAIL, getWhatsAppLink } from '@/data/portfol
  */
 export default function ContactForm({ accent }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', addons: [] });
-  const [pkgId, setPkgId] = useState('landing');
+  const [pkgId, setPkgId] = useState('informativa');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [sendFailed, setSendFailed] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    // Los ids de paquete son los 3 tipos de web reales: informativa, catalogo y tienda.
+    // Este mapa mantiene funcionando los enlaces antiguos (?paquete=landing|corporativa|ecommerce).
+    const LEGACY_PKG_IDS = { landing: 'informativa', corporativa: 'catalogo', ecommerce: 'tienda' };
     const preset = new URLSearchParams(window.location.search).get('paquete');
-    if (preset && packages.some((p) => p.id === preset)) setPkgId(preset);
+    const resolved = preset ? LEGACY_PKG_IDS[preset] || preset : null;
+    if (resolved && packages.some((p) => p.id === resolved)) setPkgId(resolved);
   }, []);
 
   const pkg = packages.find((p) => p.id === pkgId) || packages[0];
@@ -147,7 +151,9 @@ export default function ContactForm({ accent }) {
               >
                 <div>
                   <p className="text-sm font-bold text-slate-900">{p.name}</p>
-                  <p className="text-[11px] text-slate-500">{p.delivery} de entrega</p>
+                  <p className="text-[11px] text-slate-500">
+                    {p.delivery} de entrega{p.demo ? ` · Demo: ${p.demo.label}` : ''}
+                  </p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-extrabold text-slate-900">S/ {p.price.toLocaleString('es-PE')}</p>
@@ -156,6 +162,17 @@ export default function ContactForm({ accent }) {
               </button>
             ))}
           </div>
+          {/* Cada paquete tiene su demo real publicada */}
+          {pkg.demo && (
+            <a
+              href={pkg.demo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 underline-offset-2 transition-colors hover:text-emerald-800 hover:underline"
+            >
+              <ExternalLink className="h-3.5 w-3.5" /> Ver la demo real de {pkg.name}: {pkg.demo.label}
+            </a>
+          )}
         </div>
 
         {/* Extras */}
