@@ -8,8 +8,11 @@
 export const AGENCY_NAME = 'NEXUS STUDIO';
 export const AGENCY_TAGLINE = 'Diseño y desarrollo de páginas web';
 
-export const WHATSAPP_PHONE = process.env.WHATSAPP_PHONE || '51900000000';
-export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'hola@nexusstudio.dev';
+// Nota: `data/portfolioData.js` se importa también desde componentes de cliente,
+// por eso solo se leen variables NEXT_PUBLIC_* (se incrustan en el build).
+// El servidor usa CONTACT_EMAIL / RESEND_API_KEY en app/api/contact/route.js.
+export const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '51900000000';
+export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hola@nexusstudio.dev';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nexus-studio.vercel.app';
 
 /** Formatea un número como moneda en soles peruanos. */
@@ -28,6 +31,7 @@ export const heroMetrics = [
   { icon: 'MessageCircle', value: '<24h', label: 'Respuesta por WhatsApp' },
   { icon: 'LifeBuoy', value: '30 días', label: 'Soporte post-entrega' },
   { icon: 'Globe', value: '24/7', label: 'Tu web siempre en línea' },
+  { icon: 'Star', value: '5', label: 'Clientes satisfechos' },
 ];
 
 // ───────────────────────── Paquetes de diseño web ─────────────────────────
@@ -156,7 +160,7 @@ export const comparisonFeatures = [
 export const portfolioProjects = [
   {
     slug: 'informativa',
-    name: 'Web Informativa',
+    name: 'Web Informativa · AURA',
     brand: 'AURA · Consultores',
     category: 'web',
     tagline: 'Corporativa con slider hero, servicios y mapa real',
@@ -169,15 +173,29 @@ export const portfolioProjects = [
     bullets: ['Slider hero con autoplay', 'Servicios con alcance y entregables', 'Google Maps (vista Mapa / Satélite)'],
   },
   {
+    slug: 'morada-estudio',
+    name: 'Estudio Morada',
+    brand: 'Morada · Diseño de interiores',
+    category: 'web',
+    tagline: 'Fachada online del estudio con galería y contacto',
+    description:
+      'Sitio corporativo para un estudio de diseño: presentación, galería de proyectos reales, reseñas y formulario de captación directo.',
+    href: 'https://morada-estudio.vercel.app/',
+    status: 'online',
+    accent: 'informativa',
+    image: 'https://images.unsplash.com/photo-1618221852833-7f4b0c0f4e9b?q=80&w=1200&auto=format&fit=crop',
+    bullets: ['Galería de proyectos reales', 'Reseñas de clientes', 'Contacto directo por formulario'],
+  },
+  {
     slug: 'catalogo',
-    name: 'Catálogo Digital',
-    brand: 'LUMINA · Decoración & Hogar',
+    name: 'Catálogo Digital · Lumbre',
+    brand: 'Lumbre · Decoración & Hogar',
     category: 'catalogo',
     tagline: 'Vitrina interactiva con cotización masiva por WhatsApp',
     description:
       'Una vitrina premium para mostrar productos, con filtros avanzados y exportación de cotizaciones en lote. Perfecto para rubros que venden por pedido.',
-    href: '#',
-    status: 'pronto',
+    href: 'https://lumbre-catalogo.vercel.app/',
+    status: 'online',
     accent: 'catalogo',
     image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop',
     bullets: ['Filtros por categoría y precio', 'Cotización masiva por WhatsApp', 'Vista rápida con variantes y colores'],
@@ -195,6 +213,27 @@ export const portfolioProjects = [
     accent: 'tienda',
     image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1200&auto=format&fit=crop',
     bullets: ['Carrito persistente y checkout completo', 'Cupones de descuento reales', 'Pedidos que llegan a WhatsApp'],
+  },
+];
+
+// ────────────────────────────────────────────────────────────────────────────────
+// Nuevos proyectos agregados dinámicamente (secciones extra)
+// ────────────────────────────────────────────────────────────────────────────────
+export const portfolioProjectsExtended = [
+  ...portfolioProjects,
+  {
+    slug: 'morada-estudio',
+    name: 'Estudio Morada',
+    brand: 'Morada · Diseño de interiores',
+    category: 'web',
+    tagline: 'Fachada online del estudio con galería y contacto',
+    description:
+      'Sitio corporativo para un estudio de diseño: presentación, galería de proyectos reales, reseñas y formulario de captación directo.',
+    href: 'https://morada-estudio.vercel.app/',
+    status: 'online',
+    accent: 'informativa',
+    image: 'https://images.unsplash.com/photo-1618221852833-7f4b0c0f4e9b?q=80&w=1200&auto=format&fit=crop',
+    bullets: ['Galería de proyectos reales', 'Reseñas de clientes', 'Contacto directo por formulario'],
   },
 ];
 

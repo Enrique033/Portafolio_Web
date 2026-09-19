@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, Phone, Instagram, Facebook, Linkedin, Check } from 'lucide-react';
 import { AGENCY_NAME, CONTACT_EMAIL, WHATSAPP_PHONE, getWhatsAppLink } from '@/data/portfolioData';
 
 const YEAR = new Date().getFullYear();
@@ -16,6 +17,8 @@ const projectLinks = [
   { label: 'Web Informativa', href: '#', soon: true },
   { label: 'Catálogo Digital', href: '#', soon: true },
   { label: 'Tienda Virtual · CUMBRE Café', href: 'https://cumbretostaduria.vercel.app/', soon: false },
+  { label: 'Estudio Morada', href: 'https://morada-estudio.vercel.app/', soon: false },
+  { label: 'Catálogo Lumbre', href: 'https://lumbre-catalogo.vercel.app/', soon: false },
 ];
 
 export default function SiteFooter() {
@@ -38,9 +41,9 @@ export default function SiteFooter() {
               sitios que convierten.
             </p>
             <div className="mt-4 flex gap-2">
-              <a href="#footer" aria-label="Instagram" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600"><Instagram className="h-4 w-4" /></a>
-              <a href="#footer" aria-label="Facebook" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600"><Facebook className="h-4 w-4" /></a>
-              <a href="#footer" aria-label="LinkedIn" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600"><Linkedin className="h-4 w-4" /></a>
+              <a href="https://instagram.com" aria-label="Instagram" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600" target="_blank" rel="noopener noreferrer"><Instagram className="h-4 w-4" /></a>
+              <a href="https://facebook.com" aria-label="Facebook" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600" target="_blank" rel="noopener noreferrer"><Facebook className="h-4 w-4" /></a>
+              <a href="https://linkedin.com" aria-label="LinkedIn" className="rounded-xl border border-slate-200 p-2 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600" target="_blank" rel="noopener noreferrer"><Linkedin className="h-4 w-4" /></a>
             </div>
           </div>
 
@@ -119,7 +122,25 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-500">
+        {/* Barra de confianza */}
+        <div className="mt-12 rounded-2xl border border-slate-200/70 bg-slate-50 px-4 py-6 text-center text-xs text-slate-500 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-lg flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {[
+              { label: 'Diseño premium', icon: Check },
+              { label: 'Entrega en tiempo récord', icon: Check },
+              { label: 'Soporte post-entrega', icon: Check },
+              { label: 'Web optimizada', icon: Check },
+              { label: 'Atención en Perú y mundo', icon: Check },
+            ].map(({ label, icon: Icon }) => (
+              <span key={label} className="flex items-center gap-1.5">
+                <Icon className="h-3.5 w-3.5 text-emerald-500" />
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-500">
           <p>© {YEAR} {AGENCY_NAME}. Todos los derechos reservados.</p>
         </div>
       </div>

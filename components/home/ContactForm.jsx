@@ -7,18 +7,19 @@ import { addons, packages, CONTACT_EMAIL, getWhatsAppLink } from '@/data/portfol
 /**
  * Formulario inteligente que calcula totales estimados según
  * paquete + addons seleccionados. Envía a /api/contact, WhatsApp o correo.
+ * Si la URL incluye ?paquete=xxx (ej. desde la sección de precios), lo preselecciona.
  */
-export default function ContactForm({ accent, presetPackage = null }) {
+export default function ContactForm({ accent }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', addons: [] });
-  const [pkgId, setPkgId] = useState(
-    presetPackage && packages.some((p) => p.id === presetPackage) ? presetPackage : 'landing'
-  );
+  const [pkgId, setPkgId] = useState('landing');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    if (presetPackage && packages.some((p) => p.id === presetPackage)) setPkgId(presetPackage);
-  }, [presetPackage]);
+    if (typeof window === 'undefined') return;
+    const preset = new URLSearchParams(window.location.search).get('paquete');
+    if (preset && packages.some((p) => p.id === preset)) setPkgId(preset);
+  }, []);
 
   const pkg = packages.find((p) => p.id === pkgId) || packages[0];
   const addonsTotal = form.addons.reduce((a, id) => a + (addons.find((x) => x.id === id)?.price || 0), 0);

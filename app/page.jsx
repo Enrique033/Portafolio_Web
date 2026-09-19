@@ -1,7 +1,5 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 import Navbar from '@/components/home/Navbar';
 import Hero from '@/components/home/Hero';
 import PortfolioShowcase from '@/components/home/PortfolioShowcase';
@@ -13,10 +11,8 @@ import SiteFooter from '@/components/home/SiteFooter';
 import WhatsAppFloating from '@/components/shared/WhatsAppFloating';
 import { ACCENT_THEMES } from '@/data/themeConfig';
 
-/** Sección de contacto; lee ?paquete= para preseleccionar en el cotizador. */
+/** Sección de contacto (estática). ContactForm resuelve ?paquete= en el cliente. */
 function ContactSection() {
-  const params = useSearchParams();
-  const preset = params.get('paquete');
   return (
     <section
       id="contacto"
@@ -57,7 +53,7 @@ function ContactSection() {
             </ul>
           </div>
 
-          <ContactForm accent={ACCENT_THEMES.indigo} presetPackage={preset} />
+          <ContactForm accent={ACCENT_THEMES.indigo} />
         </div>
       </div>
     </section>
@@ -75,9 +71,7 @@ export default function HomePage() {
         <ServicesPricing />
         <ProcessSteps />
         <MaintenancePlans />
-        <Suspense fallback={<ContactForm accent={ACCENT_THEMES.indigo} />}>
-          <ContactSection />
-        </Suspense>
+        <ContactSection />
       </main>
       <SiteFooter />
       <WhatsAppFloating />

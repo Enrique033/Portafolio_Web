@@ -48,6 +48,7 @@ import {
   Users,
   X,
   XCircle,
+  Zap,
 } from 'lucide-react';
 
 /**
@@ -102,6 +103,7 @@ const ICON_MAP = {
   Users,
   X,
   XCircle,
+  Zap,
 };
 
 export default function Icon({ name, className = 'w-5 h-5', strokeWidth = 2, ...rest }) {

@@ -10,7 +10,7 @@ import Reveal from '@/components/shared/Reveal';
 /**
  * Showcase de proyectos de NEXUS STUDIO.
  * - Filtros 100% personalizados (píldoras interactivas, sin <select> nativos).
- * - status 'online' → abre la demo real en nueva pestaña (ej. CUMBRE Tostaduría).
+ * - status 'online' → abre la demo real en nueva pestaña.
  * - status 'pronto' → toast de "Próximamente".
  */
 const FILTERS = [
@@ -19,6 +19,15 @@ const FILTERS = [
   { id: 'catalogo', label: 'Catálogos' },
   { id: 'ecommerce', label: 'E-commerce' },
 ];
+
+/** Devuelve solo el host (sin www.) de una URL absoluta; si no es válida, un texto genérico. */
+function getHost(href) {
+  try {
+    return new URL(href).host.replace(/^www\./, '');
+  } catch {
+    return 'demo en vivo';
+  }
+}
 
 export default function PortfolioShowcase() {
   const [filter, setFilter] = useState('todos');
@@ -139,7 +148,7 @@ export default function PortfolioShowcase() {
                     </span>
                     {isLive && (
                       <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow">
-                        <ArrowUpRight className="h-3 w-3 text-emerald-600" /> cumbretostaduria.vercel.app
+                        <ArrowUpRight className="h-3 w-3 text-emerald-600" /> {getHost(d.href)}
                       </span>
                     )}
                   </div>
@@ -203,5 +212,3 @@ export default function PortfolioShowcase() {
     </section>
   );
 }
-
-
