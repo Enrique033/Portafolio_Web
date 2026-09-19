@@ -64,7 +64,7 @@ export const packages = [
     price: 699,
     oldPrice: 2890,
     tag: 'El más elegido',
-    delivery: '15 días',
+    delivery: '15 a 20 días',
     description:
       'Vitrina de productos con filtros y cotización en lote por WhatsApp, ideal para negocios que venden por pedido. Demo real: Lumbre.',
     accent: 'violet',
@@ -86,7 +86,7 @@ export const packages = [
     price: 999,
     oldPrice: 4990,
     tag: 'Vende 24/7',
-    delivery: '30 días',
+    delivery: '30 a 45 días',
     description:
       'Tienda virtual completa para vender online: catálogo, carrito, cupones y checkout, con pedidos que llegan directos a tu WhatsApp. Demo real: CUMBRE Tostaduría.',
     accent: 'indigo',
