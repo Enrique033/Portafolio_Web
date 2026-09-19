@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Check, CheckCircle2, Mail, MessageCircle, Send } from 'lucide-react';
+import { AlertTriangle, Check, CheckCircle2, Mail, MessageCircle, Send } from 'lucide-react';
 import { addons, packages, CONTACT_EMAIL, getWhatsAppLink } from '@/data/portfolioData';
 
 /**
@@ -14,6 +14,7 @@ export default function ContactForm({ accent }) {
   const [pkgId, setPkgId] = useState('landing');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sendFailed, setSendFailed] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -49,6 +50,7 @@ export default function ContactForm({ accent }) {
   const handleSend = async (e) => {
     e.preventDefault();
     setSending(true);
+    setSendFailed(false);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -63,13 +65,15 @@ export default function ContactForm({ accent }) {
           total,
         }),
       });
+      // En un export estático (GitHub Pages) no existe /api/contact → derivamos a WhatsApp.
+      if (!res.ok) throw new Error('Backend no disponible');
       const data = await res.json();
-      if (data.success) {
-        setSent(true);
-        setTimeout(() => setSent(false), 5000);
-      }
+      if (!data.success) throw new Error('Respuesta inválida del servidor');
+      setSent(true);
+      setTimeout(() => setSent(false), 5000);
     } catch {
-      /* offline: el usuario siempre puede usar WhatsApp/Correo */
+      // El usuario ve un resumen listo y un botón para enviarlo por WhatsApp.
+      setSendFailed(true);
     } finally {
       setSending(false);
     }
@@ -83,6 +87,34 @@ export default function ContactForm({ accent }) {
         <p className="max-w-sm text-sm text-slate-600">
           Te contactaremos en menos de 24 horas con una propuesta personalizada.
         </p>
+      </div>
+    );
+  }
+
+  if (sendFailed) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-amber-500/30 bg-amber-500/5 p-10 text-center shadow-soft">
+        <AlertTriangle className="h-12 w-12 text-amber-500" />
+        <h3 className="text-lg font-extrabold text-slate-900">Envíalo por WhatsApp y listo</h3>
+        <p className="max-w-sm text-sm text-slate-600">
+          No pudimos registrar la solicitud en el servidor, pero tu resumen ya está preparado. Continúa por
+          WhatsApp y te respondemos en menos de 24 horas.
+        </p>
+        <a
+          href={getWhatsAppLink(buildMessage())}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-emerald-700"
+        >
+          <MessageCircle className="h-4 w-4" /> Continuar por WhatsApp
+        </a>
+        <button
+          type="button"
+          onClick={() => setSendFailed(false)}
+          className="text-xs font-semibold text-slate-500 underline-offset-2 hover:text-slate-700 hover:underline"
+        >
+          Volver al formulario
+        </button>
       </div>
     );
   }
